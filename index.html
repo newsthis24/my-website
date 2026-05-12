@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Personal Website</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Welcome To My Website</h1>
+
+  <button id="loginBtn">Login with Google</button>
+
+  <div class="card">
+
+    <h2>My First Post</h2>
+
+    <button id="likeBtn">👍 Like</button>
+
+    <p id="likeCount">0 Likes</p>
+
+  </div>
+
+  <div class="comments">
+
+    <input type="text" id="commentInput" placeholder="Write comment">
+
+    <button id="commentBtn">Comment</button>
+
+    <div id="commentList"></div>
+
+  </div>
+
+</div>
+
+<script type="module" src="firebase.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+  </html>
