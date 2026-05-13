@@ -47,4 +47,14 @@ input{
   padding:10px;
   border-radius:10px;
   margin-top:10px;
-    }
+}
+
+.dark{
+  background:black;
+  color:white;
+}
+
+a{
+  color:#38bdf8;
+  text-decoration:none;
+}
