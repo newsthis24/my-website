@@ -1,12 +1,20 @@
+// LIKE SYSTEM
+
 const likeBtn = document.getElementById("likeBtn");
 const likeCount = document.getElementById("likeCount");
 
 let count = 0;
 
 likeBtn.addEventListener("click", () => {
+
   count++;
+
   likeCount.innerText = count + " Likes";
+
 });
+
+
+// COMMENT SYSTEM
 
 const commentBtn = document.getElementById("commentBtn");
 
@@ -31,5 +39,27 @@ commentBtn.addEventListener("click", () => {
   commentList.appendChild(div);
 
   input.value = "";
+
+});
+
+
+// DARK MODE
+
+const darkBtn = document.getElementById("darkModeBtn");
+
+darkBtn.addEventListener("click", ()=>{
+
+  document.body.classList.toggle("dark");
+
+});
+
+
+// IMAGE UPLOAD PREVIEW
+
+const imageUpload = document.getElementById("imageUpload");
+
+imageUpload.addEventListener("change", ()=>{
+
+  alert("Image Selected");
 
 });
