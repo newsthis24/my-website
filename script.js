@@ -1,65 +1,113 @@
-// LIKE SYSTEM
+import {
+db
+}
 
-const likeBtn = document.getElementById("likeBtn");
-const likeCount = document.getElementById("likeCount");
+from "./firebase.js";
 
-let count = 0;
+import {
 
-likeBtn.addEventListener("click", () => {
+collection,
+addDoc,
+getDocs
 
-  count++;
+}
 
-  likeCount.innerText = count + " Likes";
-
-});
-
-
-// COMMENT SYSTEM
-
-const commentBtn = document.getElementById("commentBtn");
-
-commentBtn.addEventListener("click", () => {
-
-  const input = document.getElementById("commentInput");
-
-  const commentText = input.value;
-
-  if(commentText === ""){
-    return;
-  }
-
-  const commentList = document.getElementById("commentList");
-
-  const div = document.createElement("div");
-
-  div.classList.add("comment");
-
-  div.innerText = commentText;
-
-  commentList.appendChild(div);
-
-  input.value = "";
-
-});
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-// DARK MODE
+// LIKE
 
-const darkBtn = document.getElementById("darkModeBtn");
+const likeBtn=document.getElementById("likeBtn");
 
-darkBtn.addEventListener("click", ()=>{
+const likeCount=document.getElementById("likeCount");
 
-  document.body.classList.toggle("dark");
+let count=0;
+
+likeBtn.addEventListener("click",async()=>{
+
+count++;
+
+likeCount.innerText=count+" Likes";
+
+await addDoc(
+
+collection(db,"likes"),
+
+{
+
+count:count
+
+}
+
+);
 
 });
 
 
-// IMAGE UPLOAD PREVIEW
+// COMMENT
 
-const imageUpload = document.getElementById("imageUpload");
+const commentBtn=
 
-imageUpload.addEventListener("change", ()=>{
+document.getElementById("commentBtn");
 
-  alert("Image Selected");
+commentBtn.addEventListener(
 
-});
+"click",
+
+async()=>{
+
+const input=
+
+document.getElementById(
+
+"commentInput"
+
+);
+
+if(input.value=="") return;
+
+await addDoc(
+
+collection(db,"comments"),
+
+{
+
+text:input.value
+
+}
+
+);
+
+const div=
+
+document.createElement(
+
+"div"
+
+);
+
+div.classList.add(
+
+"comment"
+
+);
+
+div.innerText=
+
+input.value;
+
+document
+
+.getElementById(
+
+"commentList"
+
+)
+
+.appendChild(div);
+
+input.value="";
+
+}
+
+);
