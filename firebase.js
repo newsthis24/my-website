@@ -1,107 +1,54 @@
-// Firebase SDK Import
-
 import { initializeApp }
-
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
-
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup
-
+getAuth,
+GoogleAuthProvider,
+signInWithPopup
 }
-
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
-
-  getFirestore,
-  collection,
-  addDoc,
-  onSnapshot
-
+getFirestore
 }
-
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-import {
-
-  getStorage
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-
-
-// Firebase Config
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyBPLVWY9YnVXqf8wMaNimVkRKI-Bq4WZFE",
+apiKey:"AIzaSyBPLVWY9YnVXqf8wMaNimVkRKI-Bq4WZFE",
 
-  authDomain: "my-personal-site-116dd.firebaseapp.com",
+authDomain:"my-personal-site-116dd.firebaseapp.com",
 
-  projectId: "my-personal-site-116dd",
+projectId:"my-personal-site-116dd",
 
-  storageBucket: "my-personal-site-116dd.firebasestorage.app",
+storageBucket:"my-personal-site-116dd.firebasestorage.app",
 
-  messagingSenderId: "859932951207",
+messagingSenderId:"859932951207",
 
-  appId: "1:859932951207:web:d853f66936870060551182",
-
-  measurementId: "G-7ZY2DVT7CT"
+appId:"1:859932951207:web:d853f66936870060551182"
 
 };
 
+const app=initializeApp(firebaseConfig);
 
-// Initialize Firebase
+export const auth=getAuth(app);
 
-const app = initializeApp(firebaseConfig);
+export const db=getFirestore(app);
 
+const provider=new GoogleAuthProvider();
 
-// Authentication
+const loginBtn=document.getElementById("loginBtn");
 
-const auth = getAuth(app);
+loginBtn.addEventListener("click",()=>{
 
-const provider = new GoogleAuthProvider();
+signInWithPopup(auth,provider)
 
+.then((result)=>{
 
-// Firestore Database
+alert("Welcome "+result.user.displayName);
 
-const db = getFirestore(app);
+})
 
-
-// Storage
-
-const storage = getStorage(app);
-
-
-// Login Button
-
-const loginBtn = document.getElementById("loginBtn");
-
-
-loginBtn.addEventListener("click", () => {
-
-  signInWithPopup(auth, provider)
-
-    .then((result) => {
-
-      const user = result.user;
-
-      alert("Welcome " + user.displayName);
-
-      console.log(user.email);
-
-      console.log(user.photoURL);
-
-    })
-
-    .catch((error) => {
-
-      console.log(error);
-
-    });
+.catch(console.log);
 
 });
