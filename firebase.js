@@ -1,19 +1,17 @@
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import {
-getAuth,
+import { getAuth,
 GoogleAuthProvider,
-signInWithPopup
-}
+signInWithPopup }
+
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-import {
-getFirestore
-}
+import { getFirestore }
+
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const firebaseConfig = {
+const firebaseConfig={
 
 apiKey:"AIzaSyBPLVWY9YnVXqf8wMaNimVkRKI-Bq4WZFE",
 
@@ -31,24 +29,24 @@ appId:"1:859932951207:web:d853f66936870060551182"
 
 const app=initializeApp(firebaseConfig);
 
-export const auth=getAuth(app);
-
 export const db=getFirestore(app);
+
+export const auth=getAuth(app);
 
 const provider=new GoogleAuthProvider();
 
 const loginBtn=document.getElementById("loginBtn");
 
-loginBtn.addEventListener("click",()=>{
+loginBtn.onclick=()=>{
 
 signInWithPopup(auth,provider)
 
-.then((result)=>{
+.then((r)=>{
 
-alert("Welcome "+result.user.displayName);
+alert("Welcome "+r.user.displayName);
 
 })
 
 .catch(console.log);
 
-});
+};
