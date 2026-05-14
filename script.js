@@ -1,6 +1,4 @@
-import {
-db
-}
+import { db }
 
 from "./firebase.js";
 
@@ -12,22 +10,23 @@ getDocs
 
 }
 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-// LIKE
+// LIKE SYSTEM
 
-const likeBtn=document.getElementById("likeBtn");
+const likeBtn=
 
-const likeCount=document.getElementById("likeCount");
+document.getElementById("likeBtn");
 
-let count=0;
+const likeCount=
 
-likeBtn.addEventListener("click",async()=>{
+document.getElementById("likeCount");
 
-count++;
 
-likeCount.innerText=count+" Likes";
+likeBtn.onclick=async()=>{
 
 await addDoc(
 
@@ -35,26 +34,45 @@ collection(db,"likes"),
 
 {
 
-count:count
+time:Date.now()
 
 }
 
 );
 
-});
+loadLikes();
+
+};
 
 
-// COMMENT
+async function loadLikes(){
+
+const snapshot=
+
+await getDocs(
+
+collection(db,"likes")
+
+);
+
+likeCount.innerText=
+
+snapshot.size+" Likes";
+
+}
+
+loadLikes();
+
+
+
+// COMMENT SYSTEM
 
 const commentBtn=
 
 document.getElementById("commentBtn");
 
-commentBtn.addEventListener(
 
-"click",
-
-async()=>{
+commentBtn.onclick=async()=>{
 
 const input=
 
@@ -78,36 +96,49 @@ text:input.value
 
 );
 
-const div=
+input.value="";
 
-document.createElement(
+loadComments();
 
-"div"
+};
+
+
+async function loadComments(){
+
+const snapshot=
+
+await getDocs(
+
+collection(db,"comments")
 
 );
 
-div.classList.add(
+const list=
 
-"comment"
-
-);
-
-div.innerText=
-
-input.value;
-
-document
-
-.getElementById(
+document.getElementById(
 
 "commentList"
 
-)
+);
 
-.appendChild(div);
+list.innerHTML="";
 
-input.value="";
+snapshot.forEach((doc)=>{
+
+const div=
+
+document.createElement("div");
+
+div.classList.add("comment");
+
+div.innerText=
+
+doc.data().text;
+
+list.appendChild(div);
+
+});
 
 }
 
-);
+loadComments();
